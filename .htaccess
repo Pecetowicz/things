@@ -1,0 +1,61 @@
+#BLOCK SOME PROXY'S
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{HTTP:PROXY_CONNECTION} !^$ [OR]
+RewriteCond %{HTTP:XPROXY_CONNECTION} !^$ [OR]
+RewriteCond %{HTTP:HTTP_PC_REMOTE_ADDR} !^$ [OR]
+RewriteCond %{HTTP:HTTP_CLIENT_IP} !^$
+RewriteRule .* - [F]
+</ifModule>
+
+#BLOCK SOME hostnames
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REMOTE_HOST} ^*.your-server.de [NC,OR]
+RewriteCond %{REMOTE_HOST} ^*.applebot.apple.com [NC,OR]
+RewriteCond %{REMOTE_HOST} ^*.amazonaws.com [NC,OR]
+RewriteCond %{REMOTE_HOST} ^*.vultr.com [NC,OR]
+RewriteCond %{REMOTE_HOST} ^*.sfr.net [NC,OR]
+RewriteCond %{REMOTE_HOST} ^*.100megabit.ru [NC,OR]
+RewriteCond %{REMOTE_HOST} ^*.prioritytelecom.net [NC,OR]
+RewriteCond %{REMOTE_HOST} ^*.playtime.bg [NC,OR]
+RewriteCond %{REMOTE_HOST} ^*.colocrossing.com [NC,OR]
+RewriteCond %{REMOTE_HOST} ^*.poneytelecom.eu [NC]
+RewriteRule .* - [F]
+</ifModule>
+
+#BLOCK SOME USERAGENTS
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{HTTP_USER_AGENT} (EvilBot|Feedly|FeedBurner|dotbot|Applebot) [NC]
+RewriteRule .* - [F]
+</ifModule>
+
+#BLOCK SOME IP's
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REMOTE_ADDR} ^95\.217\.186\.24$ [OR]
+RewriteCond %{REMOTE_ADDR} ^34\.67\.85\.50$ [OR]
+RewriteCond %{REMOTE_ADDR} ^34\.198\.110\.128$ [OR]
+RewriteCond %{REMOTE_ADDR} ^109\.2\.167\.234$ [OR]
+RewriteCond %{REMOTE_ADDR} ^164\.68\.99\.126$ [OR]
+RewriteCond %{REMOTE_ADDR} ^178\.19\.109\.2$ [OR]
+RewriteCond %{REMOTE_ADDR} ^13\.78\.227\.87$ [OR]
+RewriteCond %{REMOTE_ADDR} ^46\.165\.196\.38$ [OR]
+RewriteCond %{REMOTE_ADDR} ^185\.189\.115\.19$ [OR]
+RewriteCond %{REMOTE_ADDR} ^95\.71\.125\.50$ [OR]
+RewriteCond %{REMOTE_ADDR} ^103\.146\.23\.135$ [OR]
+RewriteCond %{REMOTE_ADDR} ^109\.92\.141\.118$ [OR]
+RewriteCond %{REMOTE_ADDR} ^47\.244\.228\.65$ [OR]
+RewriteCond %{REMOTE_ADDR} ^144\.76\.68\.14$ [OR]
+RewriteCond %{REMOTE_ADDR} ^54\.213\.233\.135$ [OR]
+RewriteCond %{REMOTE_ADDR} ^17.\.58\.98\.122$
+RewriteRule .* – [F]
+</ifModule>
+
+#ALLOW ONLY FOR LISTED COUNTRIES
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{ENV:GEOIP_COUNTRY_CODE} !^(MO|DE|US|UK|IE|NO|SI|CA|FR)$
+RewriteRule ^(.*)$ - [F]
+</ifModule>
