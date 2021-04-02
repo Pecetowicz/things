@@ -59,3 +59,27 @@ RewriteEngine on
 RewriteCond %{ENV:GEOIP_COUNTRY_CODE} !^(MO|DE|US|UK|IE|NO|SI|CA|FR)$
 RewriteRule ^(.*)$ - [F]
 </ifModule>
+
+#BLOCK BAD BOTS
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{HTTP_USER_AGENT} ^Baiduspider [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Feedly [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^FeedBurner [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^DotBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Applebot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^SemrushBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^AhrefsBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^MJ12bot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^BLEXBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^SeznamBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^MegaIndex.ru [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Adsbot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^BLEXBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Sogou [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^AnoMail [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^SiteBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^SentiBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^YoudaoBot [NC]
+RewriteRule ^.*$ - [F,L]
+</IfModule>
