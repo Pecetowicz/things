@@ -1,0 +1,10 @@
+/* Discord Icon for Discord Login Handler */
+/* Add following code to custom.css */
+
+.discordIcon:before {
+content: url( {resource="logos/login/Discord.svg" app="discordapp" location="interface"} );
+display: inline-block;
+width: 17px;
+vertical-align: middle;
+}
+.ipsSideMenu_list a:not(.ipsSideMenu_itemActive) .discordIcon {filter: brightness(0.23);}
